@@ -4,7 +4,7 @@ import Pagination from "../pagination/Pagination";
 import Image from "next/image";
 import Card from "../card/Card";
 
-const getData = async (page, cat) => {
+const getData = async (page: any, cat: any) => {
   const res = await fetch(
     `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
     {
@@ -19,7 +19,7 @@ const getData = async (page, cat) => {
   return res.json();
 };
 
-const CardList = async ({ page, cat }) => {
+const CardList = async ({ page, cat }: any) => {
   const { posts, count } = await getData(page, cat);
 
   const POST_PER_PAGE = 2;
@@ -31,7 +31,7 @@ const CardList = async ({ page, cat }) => {
     <div className={styles.container}>
       <h1 className={styles.title}>Recent Posts</h1>
       <div className={styles.posts}>
-        {posts?.map((item) => (
+        {posts?.map((item: any) => (
           <Card item={item} key={item._id} />
         ))}
       </div>
