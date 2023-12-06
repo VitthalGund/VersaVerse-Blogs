@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useState } from "react";
 
-export const ThemeContext = createContext<{ theme: string | undefined; toggle: () => void } | null>(null);
+export const ThemeContext = createContext<{ theme?: string | undefined; toggle?: () => void } | null>(null);
 
 const getFromLocalStorage = () => {
   if (typeof window !== "undefined") {
