@@ -1,8 +1,9 @@
 import prisma from "@/utils/connect";
+import { NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 // GET SINGLE POST
-export const GET = async (req, { params }) => {
+export const GET = async (req: NextRequestWithAuth, { params }: any) => {
   const { slug } = params;
 
   try {
@@ -12,11 +13,12 @@ export const GET = async (req, { params }) => {
       include: { user: true },
     });
 
-    return new NextResponse(JSON.stringify(post, { status: 200 }));
+    return NextResponse.json({ post }, { status: 200 });
   } catch (err) {
     console.log(err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
+    return NextResponse.json(
+      { message: "Something went wrong!" },
+      { status: 500 }
     );
   }
 };
