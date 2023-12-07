@@ -7,12 +7,11 @@ const getData = async (slug: string) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
     cache: "no-store",
   });
-
   if (!res.ok) {
     throw new Error("Failed");
   }
 
-  return res.json();
+  return await res.json();
 };
 
 const SinglePage = async ({ params }: any) => {
