@@ -60,9 +60,6 @@ VersaVerse Blogs is more than a platform; it's a community of diverse voices and
 
 [![Start Blogging](link-to-image)](link-to-sign-up)
 
-
-Certainly! Below is an example of how you can structure a local installation guide and a contribution guide in your documentation. Note that these are placeholders, and you should customize them based on your specific project structure and requirements.
-
 ### Local Installation Guide
 
 #### Prerequisites
@@ -72,6 +69,7 @@ Before you begin, ensure you have met the following requirements:
 - [Node.js](https://nodejs.org/) installed
 - [npm](https://www.npmjs.com/) (Node Package Manager) installed
 - [Git](https://git-scm.com/) installed
+- [Prisma CLI](https://www.prisma.io/docs/getting-started/installation-prisma-client-cli) installed
 
 #### Installation Steps
 
@@ -89,8 +87,36 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    npm install
    ```
+4. **Set Up Prisma for Existing Project:**
+   ```bash
+   npx prisma init --existing
+   ```
+   Follow the prompts to set up your Prisma configuration for an existing project.
 
-4. **Start the Application:**
+5. **Apply Database Migrations:**
+   ```bash
+   npx prisma db push
+   ```
+   This command will apply any pending changes to your database.
+
+6. **Create a `.env` File:**
+   Create a file named `.env` in the root of your project and add the following content:
+
+   ```dotenv
+   NODE_ENV="Dev"
+   GOOGLE_ID= # Google OAuth client Id
+   GOOGLE_SECRET= # Google OAuth client Id
+   DATABASE_URL= # Database URL for MongoDB Atlas
+   FIREBASE= # API KEY of Firebase project
+
+   NEXTAUTH_URL="http://localhost:3000/"
+   NEXTAUTH_SECRET="NextJSBlogApp"
+   ```
+
+   Fill in the placeholders with the actual values. For example, replace `# Google OAuth client Id` with your Google OAuth client Id.
+
+
+6. **Start the Application:**
    ```bash
    npm start
    ```
@@ -98,6 +124,33 @@ Before you begin, ensure you have met the following requirements:
    This will launch the application locally, typically on `http://localhost:3000`.
 
 ### Contribution Guide
+
+#### Prisma Setup
+
+1. **Include Database Changes:**
+   If your contribution involves changes to the database schema, make sure to include the necessary Prisma migrations.
+
+2. **Document Prisma Changes:**
+   Clearly document any changes related to the Prisma schema or database queries in your pull request description.
+
+3. **Testing with Prisma:**
+   Ensure that your changes are compatible with the existing Prisma setup. Test database interactions thoroughly.
+
+#### .env File Configuration
+
+1. **Explanation of Variables:**
+
+   - `NODE_ENV`: Specifies the environment (e.g., "Dev" for development).
+   - `GOOGLE_ID` and `GOOGLE_SECRET`: Google OAuth client Id and secret for authentication.
+   - `DATABASE_URL`: Database URL for MongoDB Atlas.
+   - `FIREBASE`: API key for your Firebase project.
+   - `NEXTAUTH_URL`: The base URL for NextAuth.
+   - `NEXTAUTH_SECRET`: Secret key for NextAuth.
+
+2. **Links to Navigate (if Required):**
+   - [Prisma Documentation](https://www.prisma.io/docs)
+   - [NextAuth Documentation](https://next-auth.js.org/)
+
 
 #### How to Contribute
 
